@@ -2307,6 +2307,8 @@ int policydb_read(struct policydb *p, void *fp)
 
 	rc = -EINVAL;
 	p->policyvers = le32_to_cpu(buf[0]);
+	printk(KERN_ERR "SELinux: policydb vers=%d config=0x%x sym_num=%d ocon_num=%d\n",
+	       p->policyvers, le32_to_cpu(buf[1]), le32_to_cpu(buf[2]), le32_to_cpu(buf[3]));
 	if (p->policyvers < POLICYDB_VERSION_MIN ||
 	    p->policyvers > POLICYDB_VERSION_MAX) {
 		printk(KERN_ERR "SELinux:  policydb version %d does not match "
